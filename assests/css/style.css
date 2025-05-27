@@ -22,3 +22,6 @@
 table.highlight > tbody > tr:hover {
   background-color: rgba(18, 227, 227, 0.559);
 }
+.container{
+    width: 100% !important;
+}
