@@ -8,13 +8,14 @@
     <link rel="stylesheet" href="/assests/css/style.css">
      <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
      <link rel="stylesheet" href="/assests/css/util.css">
+     <link rel="stylesheet" href="/assests/materialize/css/materialize-rtl-css">
 </head>
-<body>
+<body dir="rtl">
  <nav class="white lighten-1 z-depth-2 box ">
     <div class="nav-wrapper">
       <a href="#!" class="blue-text hide-on-med-and-up">Users management</a>
-      <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons font-blue">menu</i></a>
-      <ul class=" hide-on-med-and-down">
+      <a href="#" data-target="mobile-demo" class="sidenav-trigger right"><i class="material-icons font-blue">menu</i></a>
+      <ul class="  hide-on-med-and-down dis-flex">
         <li><a href="sass.html" class="font-blue">home</a></li>
         <li><a href="/users.html" class="font-blue">user management</a></li>
         <li><a href="https://codeyad.com" class="font-blue">site</a></li>
@@ -32,7 +33,7 @@
       <a href="#name"><span class="white-text name">hosein</span></a>
       <a href="#email"><span class="white-text email">kazmyh279@gmail.com</span></a>
     </div></li>
-    <li><a href="#!"><i class="material-icons">insert_link</i>First Link With Icon</a></li>
+    <li><a href="#!"><i class="material-icons right sidenav_link_icon">insert_link</i>First Link With Icon</a></li>
     <li><a href="#!">Second Link</a></li>
     <li><div class="divider"></div></li>
     <li><a class="subheader">Subheader</a></li>
@@ -41,7 +42,7 @@
   </ul>    
 <section id="top-actions-section " class="row display container">
     <div class="p-l-10 p-r-10 p-t-10 col s12 m4 l2">
-        <button class="waves-effect waves-light btn blue darken-2 p-l-20 p-r-20 w-full rounded_pill flex-c ">
+        <button id="adduserbutton" class="waves-effect waves-light btn blue darken-2 p-l-20 p-r-20 w-full rounded_pill flex-c ">
             <i class="material-icons m-r-5">add</i>
             add users
         </button>
@@ -131,6 +132,35 @@
     </div>
   </div>
 </section>
+<div class="add-user-modal-back dis-none"></div>
+<div class="add-user-modal rounded_top_30 center-on-small-only trans-0-1 ">
+  <div class="row p-t-10 p-b-10 p-r-40 p-l-40 ">
+    <h5>
+      <i class="material-icons m-r-10 m-l-10 pos-relative top-4">
+        person_add
+      </i>
+      add user
+    </h5>
+  </div>
+  <form>
+    <div class="input-field col s12">
+      <input id="name" type="text" class="validate">
+      <label for="name">name:</label>
+    </div>
+    <div class="input-field col s12">
+      <input id="username" type="text" class="validate">
+      <label for="username">username:</label>
+    </div>
+    <div class="input-field col s12">
+      <input id="email" type="email" class="validate">
+      <label for="email">email:</label>
+    </div>
+  </form>
+  <button type="button" class="waves-effect waves-light btn darken-1 m-t-20 m-b-10 w-full max-w-250
+  rounded_pill">
+    submit
+  </button>
+</div>
     <script src="/assests/materialize/js/materialize.min.js"></script>
     <script src="/assests/js/file.js"></script>
     <script src="/assests/js/usrs.js"></script>
