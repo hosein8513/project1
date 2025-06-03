@@ -42,7 +42,7 @@
   </ul>    
 <section id="top-actions-section " class="row display container">
     <div class="p-l-10 p-r-10 p-t-10 col s12 m4 l2">
-        <button id="adduserbutton" class="waves-effect waves-light btn blue darken-2 p-l-20 p-r-20 w-full rounded_pill flex-c ">
+        <button id="adduserbutton" class="waves-effect waves-light btn blue darken-2 p-l-20 p-r-20 w-full rounded_pill flex-c " x-on:click="showaddmodal = true">
             <i class="material-icons m-r-5">add</i>
             add users
         </button>
@@ -66,7 +66,7 @@
 <!-- </template> -->
 <section class="users-list" x-init="getusers()">
   <ul class="collapsible hide-on-med-and-up">
-    <template x-for="user in users">
+    <template x-for="user in pageusers">
     <li class="user-item">
       <div class="collapsible-header"><i class="material-icons blue-text darken-2 user-list-arrow">arrow_drop_down_circle
 
@@ -95,9 +95,9 @@
         </tr>
       </thead>
       <tbody>
-        <template  x-for="user in users">
+        <template  x-for="user in pageusers">
         <tr>
-          <td x-taxt="users.id"></td>
+          <td x-taxt="JSON.stringify(user)"></td>
           <td x-taxt="user.name"></td>
           <td x-taxt="user.username"></td>
           <td x-text="user.email"></td>
@@ -118,16 +118,17 @@
         100
       </span>
     </div>
+    <span x-text="currentpage" class="blue-text page-number"></span>
     <div class="pafination-buttons">
-      <i class="material-icons blue darken-2 m-r-5 m-l-5 p-l-5 p-r-5 p-t-1 p-b-3 waves-effect waves-light white-text rounded_pill">keyboard_arrow_right</i>
-            <i class="material-icons blue darken-2 m-r-5 m-l-5 p-l-5 p-r-5 p-t-1 p-b-3 waves-effect waves-light white-text rounded_pill">keyboard_arrow_left</i>
+      <i class="material-icons blue darken-2 m-r-5 m-l-5 p-l-5 p-r-5 p-t-1 p-b-3 waves-effect waves-light white-text rounded_pill" x-on:click="nextpage()">keyboard_arrow_right</i>
+            <i class="material-icons blue darken-2 m-r-5 m-l-5 p-l-5 p-r-5 p-t-1 p-b-3 waves-effect waves-light white-text rounded_pill" x-on:click="prevpage()">keyboard_arrow_left</i>
 
     </div>
   </div>
 </section>
 
-<div class="add-user-modal-back dis-none"></div>
-<div class="add-user-modal rounded_top_30 center-on-small-only trans-0-1 ">
+<div class="add-user-modal-back dis-none" x-bind:class="{'dis-none' : !showaddmodal}" x-on:click="showaddmodal = false"></div>
+<div class="add-user-modal rounded_top_30 center-on-small-only trans-0-1 " x-bind:class="{'show' : showaddmodal}">
   <div class="row p-t-10 p-b-10 p-r-40 p-l-40 ">
     <h5>
       <i class="material-icons m-r-10 m-l-10 pos-relative top-4">
