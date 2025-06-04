@@ -50,7 +50,7 @@
 
   <div class="row col s12 m8 l8">
  <div class="input-field col s12">
-          <input id="search" type="text" class="validate">
+          <input id="search" type="text" class="validate" x-on:keydown="handlechange($el)">
           <label for="search">
             <i class="material-icons pos-relative top-7">search</i>search</label>
         </div>
@@ -110,13 +110,12 @@
   <div class="pagination-container container p-l-9 p-r-9 p-t-9 p-b-10 flex-sb-m pos-fixed left-0 right-0 bottom-0 z-depth-4 rounded_top_30">
     <div class="pagination-item-counts flex-l p-l-10 flex-l-m">
       shoing
-      <span class="m-l-5 m-r-5 max-w-50">
-<input type="number" class="blue-text darken-2 no-border center-align m-b-8" value="10">
+      <span class="m-l-5 m-r-5 max-w-50 pos-relative top-4">
+<input type="number" class="blue-text darken-2 no-border center-align m-b-8"
+x-on:change="handlechangeitemscount($el)" :value="itemscount">
       </span>
       of
-      <span class="blue-text darken-2 m-l-5 m-r-5">
-        100
-      </span>
+      <span class="blue-text darken-2 m-l-5 m-r-5" x-text="users.length"></span>
     </div>
     <span x-text="currentpage" class="blue-text page-number"></span>
     <div class="pafination-buttons">
@@ -141,20 +140,21 @@
 
   <form>
     <div class="input-field col s12">
-      <input id="name" type="text" class="validate">
+      <input id="name" type="text" class="validate" x-model="newuserinfo.name">
       <label for="name">name:</label>
     </div>
     <div class="input-field col s12">
-      <input id="username" type="text" class="validate">
+      <input id="username" type="text" class="validate" x-model="newuserinfo.username">
       <label for="username">username:</label>
     </div>
     <div class="input-field col s12">
-      <input id="email" type="email" class="validate">
+      <input id="email" type="email" class="validate" x-model="newuserinfo.email">
       <label for="email">email:</label>
     </div>
   </form>
   <button type="button" class="waves-effect waves-light btn darken-1 m-t-20 m-b-10 w-full max-w-250
-  rounded_pill">
+  rounded_pill"
+  x-on:click="handlesubmitadduserform()">
     submit
   </button>
 </div>

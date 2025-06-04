@@ -1,6 +1,7 @@
 document.addEventListener('alpine:init', () => {
    Alpine.data('userdata', function() {
     return {
+        mainusers: [],
         users: [],
         pageusers: [],
         isloading: false,
@@ -8,10 +9,16 @@ document.addEventListener('alpine:init', () => {
         pagecount: 1,
         itemscount: 4,
         currentpage: 1,
+        newuserinfo:{
+name:"",
+username:"",
+email:"",
+        },
         getusers() {
             this.isloading = true
             axios.get("https://jsonplaceholder.typicode.com/users")
                 .then((res) => {
+                    this.mainusers = res.data;
                     this.users = res.data;
                     this.pagination(); // الان شناخته می‌شود
                     console.log(res);
@@ -37,6 +44,36 @@ document.addEventListener('alpine:init', () => {
             this.currentpage--
             if (this.currentpage < 1)this.currentpage = 1
             this.pagination()
+        },
+        handlechangeitemscount(e){
+            this.itemscount = e.value
+            if(this.itemscount < 1) this.itemscount = 1
+            if(this.itemscount > this.users.length) this.itemscount = this.users.length
+            this.pagination()
+
+        },
+        handlechange(e){
+            setTimeout(()=>{
+this.users = this.mainusers.filter(user=>user.name.includes(e.value) || user.
+username.includes(e.value) || user.email.includes(e.value))
+this.currentpage = 1
+this.pagination()
+            },100)
+
+        },
+        handlesubmitadduserform(){
+            console.log(this.newuserinfo);
+              axios.post("https://jsonplaceholder.typicode.com/users" , this.newuserinfo,)
+                .then((res) => {
+                   if(res.status === 201){
+this.mainusers.push(res.data)
+this.showaddmodal = false
+                    this.pagination();} // الان شناخته می‌شود
+                    
+                })
+                .finally(() => {
+                    this.isloading = false
+                })
         }
 
         
