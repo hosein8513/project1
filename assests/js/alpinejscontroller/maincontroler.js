@@ -68,12 +68,20 @@ this.pagination()
                    if(res.status === 201){
 this.mainusers.push(res.data)
 this.showaddmodal = false
+this.handleresetform()
                     this.pagination();} // الان شناخته می‌شود
-                    
+                M.toast({html: 'کاربر با موفقیت ایجاد شد', classes: 'rounded green'});     
                 })
                 .finally(() => {
                     this.isloading = false
                 })
+        },
+        handleresetform(){
+            this.newuserinfo = {
+                name:"",
+                username:"",
+                email:"",
+            }
         }
 
         
